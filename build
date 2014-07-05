@@ -1,0 +1,32 @@
+#!/bin/sh
+
+here=`cd \`dirname $0\` && pwd`
+root="$here"
+scratch="$root/scratch"
+dist="$root/dist"
+src="$root/src/elm"
+
+cd "$root"
+
+clean() {
+  if [ -d "$1" ]; then
+    rm -rf "$1" && mkdir -p "$1"
+  fi
+}
+
+cleanDirs() {
+  clean "$scratch" &&
+  mkdir -p "$scratch/dist" &&
+  mkdir -p "$scratch/test" &&
+  clean "$dist"
+}
+
+compile() {
+  elm -b "$scratch/dist" --make --src-dir=src Bug/Test.elm
+}
+
+gather() {
+  rsync -aH --exclude '*.elm' "$scratch/" "$dist/"
+}
+
+cleanDirs && compile && gather

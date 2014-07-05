@@ -1,0 +1,11 @@
+{ "version": "1.0.0"
+, "summary": "Jenkins monitoring screen"
+, "description": "Jenkins monitoring screen"
+, "license": "BSD3"
+, "repository": "https://github.com/techtangents/fewtile2"
+, "exposed-modules": []
+, "elm-version": "0.12.1"
+  "dependencies": { 
+    "evancz/automaton": "0.1.0.1" 
+  } 
+}
